@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <span>Message:{{msg}}</span>
+
+    <!--v-once 一次性的插值 数据改变时 插值处的内容不会更新-->
+    <span v-once>一次性的插值：{{msg}}</span>
+
+        <!--v-html 为了输出真正的HTML-->
+        <p>Using mustaches:{{rawHtml}}</p>
+        <p>Using v-html directive: <span v-html="rawHtml"></span> </p>
+
+        <!--Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 v-bind 指令：-->
+        <div v-bind:id="dynamicId"></div>
+    <button v-bind:disabled="isButtonDisabled">Button</button>
+
+    <!--指令 (Directives) 是带有 v- 前缀的特殊特性。指令特性的值预期是单个 JavaScript 表达式 (v-for 是例外情况，稍后我们再讨论)。指令的职责是，当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM-->
+    <p v-if="seen">现在你看到我了</p>
+    <!--v-if指令将根据表达式 seen 的值的真假来插入/移除<p>元素-->
+
+    <!--参数-->
+    <!--一些指令能够接收一个“参数”，在指令名称之后以冒号表示。例如，v-bind 指令可以用于响应式地更新 HTML 特性：-->
+    <a v-bind:href="url">...</a>
+    <!--href是参数  指定v-bind 指令将该元素的 href 特性与表达式url的值绑定-->
+    <!--v-on 用于监听DOM事件-->
+    <a v-on:click="doSomething">...</a>
+
+
+
+    <!--动态参数-->
+    <a v-bind:[attributeName]="url"></a>
+    <!--attributeName 会被作为一个 JavaScript 表达式进行动态求值-->
+    <!--Vue 实例有一个 data 属性 attributeName，其值为 "href"，那么这个绑定将等价于 v-bind:href-->
+    <!--同样地，你可以使用动态参数为一个动态的事件名绑定处理函数：-->
+    <a v-on:[eventName]="doSomething">...</a>
+    <!--当 eventName 的值为'focus'时，v-on:[eventName]将等价于v-on：focus-->
+
+    <!--动态参数表达式有一些语法约束，因为某些字符，例如空格和引号，放在 HTML 特性名里是无效的。同样，在 DOM 中使用模板时你需要回避大写键名。-->
+    <!--下面的代码是无效的-->
+    <a v-bind:['foo' + bar]="value">...</a>
+    <!--因为【】中有空格&引号-->
+
+    <!--如果你在 DOM 中使用模板 (直接在一个 HTML 文件里撰写模板)，需要留意浏览器会把特性名全部强制转为小写：-->
+    <!--在DOM中使用模板时这段代码会被转换成 'v-bind：【someattr】'-->
+    <a v-bind:[someAttr]="value">...</a>
+
+
+
+
+
+
+
+
+
+
+</body>
+<script src="vue.js"></script>
+<script>
+
+</script>
+</html>

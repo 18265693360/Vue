@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <p>{{foo}}</p>
+    <!--这里的foo不会更新-->
+    <button v-on:click="foo = 'baz'">Change it</button>
+</div>
+</body>
+<script src="vue.js"></script>
+<script>
+    var obj = {
+        foo:'bar'
+    };
+
+    Object.freeze(obj)
+
+    new Vue({
+        el:'#app',
+        data:obj
+    })
+
+    var data = {a:1}
+    var vm = new Vue({
+        el:'#example',
+        data: data
+    })
+
+    vm.$data === data // => true
+    vm.$el === document.getElementById('example')//=>true
+
+    //$watch 是一个实例方法
+    vm.$watch('a', function (newValue, oldValue) {
+        //这个回调'vm.a'改变后调用
+    })
+
+
+
+
+</script>
+</html>

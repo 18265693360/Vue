@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--如何使用-->
+<!--第一步父组件App.vue中-->
+
+    <div id="app6">
+        <p>{{foo}}</p>
+        <!--这里的'foo'不会更新-->
+        <button v-on:click="foo='baz'">Change it</button>
+    </div>
+</body>
+
+<template>
+    <div id="app">
+        <Users :users="users"></Users>
+    </div>
+</template>
+<!--子组件-->
+<script>
+    import Users from './components/Users'
+    export default {
+        name:'App',
+        data: function () {
+            return{
+                users:[
+                    {id:1, name: 'Ben'},
+                    {id:2, name: 'Marry'},
+                ]
+            }
+        },
+        components:{
+            Users
+        }
+    }
+    // 把父组件中的data中的users：
+    // [ ] 通过v-bind:users = "users"传递给子组件
+</script>
+<template>
+    <div id="app1">
+        <span>通过import注册局部组件</span>
+        <span>{{user[0].name}}</span>
+    </div>
+</template>
+<script>
+    export default {
+        name:'users',
+        //props:['users'],
+        props:{
+            users:{
+                type: Array,
+                required: true
+            }
+        }
+    }
+    // 父组件中传过来的值可以直接使用了<span>{{users[0].name}}</span>
+
+
+    // Prop类型
+    // 以字符串数组形式列出的 prop：
+    props:['title', 'likes', 'isPublished', 'commentIds','author']
+
+    // 以对象形式列出 prop，这些属性的名称和值分别是 prop 各自的名称和类型：
+    // props:{
+    //         title: String,
+    //         likes:Number,
+    //         isPublished:Boolean,
+    //         commentIds:Array,
+    //         author: Object
+    // }
+
+
+    // 传递动态或静态prop
+    // data 对象中的所有的属性加入到 Vue 的响应式系统中
+
+    //我们的数据对象
+    var data = {a:1}
+
+    //该对象被加入到一个Vue实例中
+    var vm = new Vue({
+        data:data
+    })
+
+    //获得这个实例上的属性
+    //返回源数据中对应的字段
+    vm.a == data.a // => true
+
+    // 设置属性也会影响到原始数据
+    vm.a = 2
+    data.a // =>2
+
+    //反之亦然
+    data.a = 3
+    vm.a // =>3
+
+    // 当这些数据改变时，视图会进行重渲染。值得注意的是只有当实例被创建时 data 中存在的属性才是响应式的。也就是说如果你添加一个新的属性，比如：
+    vm.b = 'hi'
+
+    // 那么对 b 的改动将不会触发任何视图的更新。如果你知道你会在晚些时候需要一个属性，但是一开始它为空或不存在，那么你仅需要设置一些初始值。比如：
+    // data:{
+    //         newTodoText:'',
+    //         visitCount:0,
+    //         hideCompletedTodos:false,
+    //         todos:[],
+    //         error:null
+    // }
+
+    // 例外是使用 Object.freeze()，这会阻止修改现有的属性，也意味着响应系统无法再追踪变化。
+
+    var obj = {
+        foo:'bar'
+    }
+
+    Object.freeze(obj)
+
+    new Vue({
+        el:'#app',
+        data:obj
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

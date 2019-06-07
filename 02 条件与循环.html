@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app3">
+        <p v-if='seen'>现在你看看我</p>
+    </div>
+
+<div id="app4">
+    <ul>
+        <li v-for="todo in todos">
+            {{todo.text}}
+        </li>
+    </ul>
+</div>
+
+<div id="app5">
+    <p>{{message}}</p>
+    <button v-on:click="reverseMessage">逆转消息</button>
+</div>
+
+<div id="app6">
+    <p>{{message}}</p>
+    <input v-model="message">
+</div>
+
+
+</body>
+<script src="vue.js"></script>
+<script>
+    var app3 = new Vue({
+        el:'#app3',
+        data:{
+            seen:true
+        }
+    })
+
+    // v-for 指令可以绑定数组的数据来渲染一个项目列表：
+    var app4 = new Vue({
+        el:'#app4',
+        data:{
+            todos:[
+                {text:'学习'},
+                {text:'娱乐'},
+                {text:'休闲'},
+            ]
+        }
+    })
+
+    // 控制台可以加项目 app4.todos.push({text:'新项目'})
+
+    // 为了让用户和你的应用进行交互，我们可以用 v-on 指令添加一个事件监听器，通过它调用在 Vue 实例中定义的方法：
+     var app5 = new Vue({
+         el:'#app5',
+         data:{
+             message:'hi'
+         },
+         methods:{
+             reverseMessage:function () {
+                 this.message = this.message.split('').reverse().join('')
+             }
+         }
+     })
+
+    // v-model 双向数据绑定
+    // v-model 指令，它能轻松实现表单输入和应用状态之间的双向绑定。
+    var app6 = new Vue({
+        el:'#app6',
+        data:{
+            message:'HI!!!!!!!!!!'
+        }
+    })
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

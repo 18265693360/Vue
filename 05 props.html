@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--父组件-->
+<template>
+    <div>
+        <fpdx-modal :zbArr="polygonArr">
+        </fpdx-modal>
+    </div>
+</template>
+
+<!--子组件-->
+<template>
+    <Modal v-model="fpdxModal" title="" :mask-closable="false">
+    </Modal>
+</template>
+</body>
+<script>
+    export default {
+        props:['zbArr'],
+    }
+    // 就这样父组件中的zbArr bind的值就可以传到子组件fpdxModal中使用了...
+</script>
+</html>
