@@ -716,15 +716,24 @@
 
     // 使用递归：
 // 使用递归时，一个要设置个结束条件，让它归，如果没有结果条件，就出错了：
-    function f5(n) {
-        if (1 === n){
-            return 1;
+//     function f5(n) {
+//         if (1 === n){
+//             return 1;
+//         }
+//         return f5(n-1)+n;
+//     }
+//
+//     console.log(f5(100));//记得打印
+
+    //运用递归 斐波那契数列
+    function getResult(n) {
+        if (n==1 || n==2){
+            return  1;
+        } else{
+            return getResult(n-1) + getResult(n-2);
         }
-        return f5(n-1)+n;
     }
 
-    console.log(f5(100));//记得打印
-
-
+    console.log(getResult(10));
 </script>
 </html>
