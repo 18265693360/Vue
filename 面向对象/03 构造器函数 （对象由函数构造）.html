@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // var obj = {
+    //     name:"岳云鹏",
+    //     sex:"男人"
+    // }
+
+    //工厂函数
+    // function makeMan(name, sex) {//工厂函数生产对象
+    //         return{
+    //             name: name,
+    //             sex: sex
+    //         }
+    // }
+    // 无法百分百确定是否是这个构造函数生产的对象 由此诞生构造器函数
+    // console.log(makeMan("钱谦益", "汉奸"));
+
+    // function makeMan (obj){
+    //     return obj
+    // }
+
+    // console.log(makeMan(obj));
+
+            //此处一定是都大写首字母
+    function MakeMan(name, sex) {//构造器函数
+        this.name = name;
+        this.sex = sex;
+        // this.nation = "美国人";
+        // this.nation = "中国人"
+    }
+
+    MakeMan.prototype.nation = "中国人";
+    //每一个构造器函数中都有一个prototype属性
+    // console.log(MakeMan.prototype);
+
+    var men = new MakeMan('郑家俊', '男人');//构造器函数生产实例
+    var dengjiaxian = new MakeMan('邓稼先', '男人');//构造器函数生产实例
+    // console.log(men);
+    // console.log(dengjiaxian.nation);
+
+    // 原型链
+    console.log(dengjiaxian.__proto__.__proto__.__proto__);
+    //Object 这个构造器函数是原型链的顶端 那么就返回null
+
+    // __proto__指向构造器函数的原型对象
+    // 在我们去访问一个对象属性的时候 会优先访问本地属性 如果本地属性没有这个东西
+    //就会沿着__proto__去寻找这个属性 如果找不到 就返回undefined
+
+
+    //构造器函数在经过new 的时候 会去做四件事
+    // 1.创建一个空的obj
+    // 2.将构造函数内部的this 指向生成的对象（obj）
+    // 3.将对象的__proto__指向构造器函数的原型对象
+    // 4.返回这个新生成的对象
+
+
+
+
+    //原型链
+    // __proto__指向 函数的原型对象  __proto__  再继续指向 函数的对象 f Object
+    //1 每一个对象都是由构造器函数生产的
+    //2 每一个对象都有一个__proto__属性
+    //3 这个属性都指向构造器函数的原型对象上
+    //4 当我们去查找一个对象上的属性的时候 会优先查找对象的本地属性
+    // 其次再通过__proto__去构造器函数的原型对象上查找，如果还找不到
+    // 就去构造器函数的原型对象上的__proro__去找 直接找到
+    // null都没有 就返回undefined
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

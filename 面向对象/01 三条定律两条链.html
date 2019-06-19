@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+
+<script>
+    //一切皆对象
+    // 对象由函数塑造
+    // 对象是属性的集合
+    // 原型链  作用域链
+
+
+    //判断是否为对象
+    //从对象特征来分析 首先对象是支持点语法的 其次 对象可以添加属性
+
+    // var str = "我是字符串";
+    // console.log(str.charAt(1));//点语法只有哦调用原生的方法才管用
+    //
+    // str.index = 345;
+    // console.log(str.index);//undefined  非原生
+
+    var num = 2.234;
+    console.log(num.toFixed(3));
+    // toFixed（n） 保留n小数  瞬间被包装成对象类型  无法添加属性
+
+    //数组方法
+    var arr = [];
+    // forEach map filter indexOf
+    // 对象上是没有上述的循环方法
+
+    //类数组
+    var obj = {
+        [0]:"数组项1",
+        [1]:"数组项2",
+    }
+    //for 循环遍历  数组方法多于对象方法
+    for (var i = 0; i < obj.length; i++){
+        console.log(obj[i]);
+    }
+
+    //无forEach 方法
+    // obj.forEach( =>{
+    //     console.log(item);
+    // })
+
+    // 面向对象的三个特点
+    // 封装： 把可以复用的 具有一定功能的代码 封装成为一个方法（对象上的属性 如果是函数就是方法）
+    // 继承 子类从从父类继承的方法和属性
+    // 多态 多态是建立在继承的基础上，通过改写 或者自身的属性和父元素不同 得到不同的方法调用结果
+    // 抽象
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
