@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //怎样去访问一个对象上的属性
+    //1.通过点语法访问
+    //2.通过中括号语法去访问
+    //两种方法的区别
+
+
+
+    var obj = {
+        cpu:"酷睿i10 8900hq",
+        RAM:"金士顿骇客神条 ddr4 21333",
+        ROM:"七彩虹 SSD 1TB"
+    }
+
+    //点语法
+    console.log(obj.cpu);
+    //中括号访问变量
+    console.log(obj["RAM"]);
+
+    //str 为变量
+    var str = 'cpu';
+
+    console.log(obj[str]);
+
+    // 总结：添加新属性有两种，一种.语法，一种是[]语法。
+
+    var obj = {
+
+    };
+    obj.name = "xiaoxian";
+    obj.age = 4;
+    obj.say = function () {
+        console.log("小强旺旺叫");
+    }
+    console.log(obj.name);
+    console.log(obj.age);
+    console.log(obj.say());
+
+    var obj = {
+
+    };
+
+    // 注意的问题：如果添加了两个属性名一样的属性：
+    obj["name"] = "renjing";
+    obj["name"] = "xiaolong";
+    obj["age"] = 2;
+    obj["say"] = function () {
+        console.log("门前大桥下");
+    }
+    console.log(obj.name);
+    console.log(obj.age);
+    console.log(obj.say());
+
+
+</script>
+</html>

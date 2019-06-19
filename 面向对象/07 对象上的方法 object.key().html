@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+
+
+    function MakeMan(name, sex){
+        this.name = name;
+        this.sex = sex;
+    }
+
+    MakeMan.prototype.nation = "中国";
+    var obj = new MakeMan("刘嘉玲", "女人")
+
+    // var obj = {
+    //     name: "任正非",
+    //     sex:"男人",
+    //     nation: "中国人"
+    // }
+
+    //获得数组 属性名的数组
+    console.log(Object.keys(obj));//name sex 就这两项
+    //object.keys 不会遍历原型对象上的属性（nation）只会遍历本地上的属性
+
+    for (var key in obj){
+        console.log(key);
+    }
+    //for in 会遍历原型对象上上的属性
+</script>
+</html>

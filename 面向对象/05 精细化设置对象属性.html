@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 属性的四个特征:
+    // configurable: 是否可以删除。 默认为true  可以删除
+    // writable: 是否可以修改。 默认为ture, 可以修改：
+    // enumerable:　是否可以枚举。可以使用 for  in  默认为ture, 可以枚举：
+    // value: 指定属性的值
+    // set: 设置
+    // get: 得到
+    // 这六个属性特征只能同时存在四个
+
+
+
+    // 1 configurable
+
+    // function MakeMan(name, sex) {
+    //     this.name = name;
+    //     this.sex = sex;
+    // }
+    // MakeMan.prototype.nation = "中国人";
+    //
+    // var obj = new MakeMan('岳云鹏', '男人');
+    //
+    // for (var key in obj){
+    //     console.log(obj[key]);
+    // }
+    //
+    // console.log(obj);
+
+    // var arr = [2,3,5];
+    // arr.index = 998;
+    // for (var i = 0; i < arr.length; i++){
+    //     console.log(arr[i]);
+    // }
+
+    // for (var key in arr){
+    //     console.log(arr[key]);
+    // }
+
+    var obj = {
+        name: "刘德华",
+        sex:"lady",
+        nation:'Chinese'
+    }
+
+    // Object.defineProperty(obj, "nation",{
+    //     enumerable:false  //不枚举
+    // })
+    Object.defineProperty(obj, "nation",{
+        // enumerable: true     //枚举
+        // writable: false,//不可修改
+        // writable:true,//可修改
+        // configurable: true //可删除
+        // configurable: false //不可删除
+        // value: "China",
+        set: function (something) {
+            //在设定的时候做些什么
+            console.log(something);
+            obj.something = something;
+        },
+        get: function () {
+            //在获取值得时候做些什么
+            return obj.name + "的国籍是：" + obj.something
+        }
+    });
+    // obj.name = "米龙";
+    // delete obj.nation;
+    // console.log(obj.nation);
+    obj.nation = "中国";
+
+
+    console.log(obj);
+    console.log(obj.nation);
+    // for (var key in obj){
+    //     console.log(obj[key]);
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
