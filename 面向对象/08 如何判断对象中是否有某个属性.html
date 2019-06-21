@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //属性问题 有的判断不出来
+    var obj = {
+        name: "习近平",
+        sex: undefined
+    };
+
+    if (obj.sex){
+        console.log('有');
+    } else {
+        console.log('没有');
+    }
+    //没有
+
+    if (obj.hasOwnProperty('sex')){
+        console.log('有');
+    } else {
+        console.log('没有');
+    }//有
+
+    if ('sex' in obj){
+        console.log('有');
+    } else {
+        console.log('没有');
+    }
+
+    if ("name" in obj){
+        console.log('有');
+    } else {
+        console.log('没有');
+    }
+
+
+
+    function MakePerson() {
+        this.name = name;
+    }
+
+    MakePerson.prototype.sex = 0;//原型对象
+    var obj = new MakePerson('郭德纲');
+    if ("name" in obj){
+        console.log('有');
+    } else {
+        console.log('没有');
+    }
+
+    if(obj.hasOwnProperty('name')){
+        console.log('有');
+    } else {
+        console.log('没有');
+    }
+
+
+
+
+    // 为了找到if else找不到的 新的API
+    // in 判断一个属性是否在一个对象中
+    // hasOwnProperty 判断一个属性是否在一个对象中
+    // 区别 in 还会去原型对象中寻找属性
+    // hasOwnProperty 仅仅会在本身属性上找
+
+</script>
+</html>

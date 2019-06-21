@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">点我</button>
+</body>
+<script>
+    // this永远指向他的调用者
+    // 1到处都有this
+
+    //函数内
+    // console.log(this);//window
+
+    // 函数内
+    function demo() {
+        console.log('打印this');
+        console.log(this);
+        //不能手动改变this的指向
+        // this = 999;
+
+        //但是可以改变this的值
+        this.index = 998;
+        console.log(this.index);
+    }
+    demo();
+
+
+    //this的值随时可能改变 只有在调用的时候才能确定
+    var obj = {
+        demo: demo
+    }
+    obj.demo();
+
+
+    // this到底是什么
+    // this也是一种对象 这个对象指向当前代码中所需要的各种资源
+    // this永远指向他的调用者
+    // this永远只想你调用他的对象
+
+    function demo() {
+        console.log(this);
+    }
+    demo();
+    window.demo();//调用者window
+    
+
+    //this永远指向调用他的对象 而且 只有在调用的那一刻才确定
+    var name = "全局对象";
+    // window
+    function logName() {
+        console.log(this.name);
+    }
+    // this指向obj
+    // logName();
+    // obj
+    var obj = {
+        name: "舜天名",
+        logName: logName
+    }
+    obj.logName();//obj 调用
+
+
+    //obj.logName();
+    //事件处理函数当中 this指向事件源
+    var btn = document.querySelector("#btn");
+    btn.onclick = function () {//普通匿名函数 函数赋值到onclick
+        //btn调用了 指向btn
+        console.log(this);
+    };
+    console.dir(btn);
+
+
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

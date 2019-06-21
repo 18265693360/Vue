@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            position: relative;
+            width: 500px;
+            height: 500px;
+            border: 1px solid #ff0000;
+            margin: 60px auto;
+        }
+        .item{
+            position: absolute;
+            left: 500px;
+            /*这里是修改弹幕的地方*/
+            font-weight: 600;
+            font-size: 60px;
+        }
+    </style>
+</head>
+<body>
+<input type="text" id="text"><button id="btn">发送</button>
+<div id="box barrage1"></div>
+</body>
+<script>
+    //1 弹幕从右向左
+    //2 出现位置不定
+    //3 跑完就会消失
+
+    //barrage 弹幕
+    function MakeBarrage(box) {
+        this.box = document.querySelector(box);
+    }
+
+    // MakeBarrage.prototype.add = function (value) {
+    //         // var value = text.value(); 错误
+    //         // var value = text.value;
+    //         // text.value = '';
+    //         //不需要了
+    //
+    //
+    //         //创建一个dom元素
+    //         var span = document.createElement('span');
+    //         //将text放进去
+    //         span.innerText = value;
+    //         span.className = "item";//添加类名
+    //         // this.box.appendChild(span);//添加进去内容
+    //        this.box.appendChild(span);
+    //
+    //         //出现位置
+    //         var top = Math.floor((Math.random()*300));
+    //         //不能超出高度
+    //         span.style.top = top + 'px';
+    //         //动起来
+    //         var timer = setInterval(function () {
+    //             span.style.left = span.offsetLeft - 2 + 'px';
+    //             if (span.offsetLeft < -span.offsetWidth){
+    //                 //就是必须是span 移动到box外面然后宽度>距离左边框的距离
+    //                 clearInterval(timer);
+    //                 span.remove();
+    //             }
+    //         },20)
+    // }
+    MakeBarrage.prototype.add = function (value) {
+        var span = document.createElement('span');
+        span.innerText = value;
+        span.className = "item";
+        this.box.appendChild(span);
+        var top = Math.floor((Math.random() * 380));
+        span.style.top = top + 'px';
+        var timer = setInterval(function () {
+            span.style.left = span.offsetLeft - 2 + 'px';
+            if(span.offsetLeft < -span.offsetWidth){
+                clearInterval(timer);
+                span.remove();
+            }
+        }, 20)
+    }
+
+
+
+    var btn = document.querySelector('#btn');
+    var text = document.querySelector('#text');
+
+    var barrage1 = new MakeBarrage('.barrage1');
+
+    btn.onclick = function () {
+        var value = text.value;
+        text.value = '';
+        barrage1.add(value);
+    }
+
+
+
+
+    // var text = document.querySelector('#text');
+    // var btn = document.querySelector('#btn'); 不需要
+
+
+
+
+
+
+
+</script>
+</html>

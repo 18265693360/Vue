@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var arr = [2,3,4,5];
+
+    //只要在构造器函数原型对象上添加了某个方法 他生产的一切实例都可以访问 节约内存
+    Array.prototype.getPosition = function (item) {
+        var index = -1;
+        for (var i = 0; i < arr.length; i++){
+            if (item == this[i]){
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    var arr1 = [12,32,43];
+
+    console.log(arr.getPosition(2));
+    console.log(arr1.getPosition(12));
+</script>
+</html>

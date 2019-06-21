@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .container{
+            border: 1px solid #000;
+            min-height: 400px;
+        }
+        ul{
+            list-style: none;
+        }
+        .clearfixed::after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .container .tab-header li{
+            float: left;
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            width: 150px;
+            color: #333;
+            font-weight: 700;
+        }
+        .container .tab-header li.active{
+            color: #f5c6cb;
+            background: #409eff;
+        }
+        .tab-header::after{
+            content:"";
+            display: block;
+            clear: both;
+        }
+        .tab-body li{
+            padding-top: 20px;
+            display: none;
+        }
+        .tab-body li.active{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="container tab1">
+    <ul class="tab-header">
+        <li class="active">首页</li>
+        <li>详情页</li>
+        <li>关于</li>
+    </ul>
+    <ul class="tab-body">
+        <li class="active">页面1</li>
+        <li>页面2</li>
+        <li>页面3</li>
+    </ul>
+</div>
+<div class="container tab2">
+    <ul class="tab-header">
+        <li class="active">首页</li>
+        <li>详情页</li>
+        <li>关于</li>
+    </ul>
+    <ul class="tab-body">
+        <li class="active">页面1</li>
+        <li>页面2</li>
+        <li>页面3</li>
+    </ul>
+</div>
+</body>
+<script>
+    // 1.function MakeTab() {
+
+    // }
+
+    function MakeTab(container) {
+        // this.container = document.querySelector('.container');
+        this.box = document.querySelector(container);
+        this.tabHeader = this.box.querySelector('.tab-header');
+        this.tabBody = this.box.querySelector('.tab-body')
+
+        this.headerLis = this.tabHeader.querySelectorAll('li');
+        this.bodyLis = this.tabBody.querySelectorAll('li');
+        var _this = this;
+
+
+        for (var i = 0; i <_this.headerLis.length; i++){
+            (function (index) {
+                //立即执行函数中的this 和函数上面的不一样
+                _this.headerLis[i].onclick = function () {
+                    for (var n = 0; n < _this.headerLis.length; n++){
+                        _this.headerLis[n].className = "";
+                        _this.bodyLis[n].className = "";
+                    }
+                    this.className = "active";//this指向事件源 不能改
+                    // bodyLis[this.index].className = "active"; 方法1
+                    _this.bodyLis[index].className = "active";
+                }
+            })(i)
+            // headerLis[i].index = i; 两种方法处理索引值  （方法一）
+            //(function(){}）() 立即执行函数
+
+        }
+    }
+
+    var tab1 = new MakeTab('.tab1');
+    var tab2 = new MakeTab('.tab2');
+
+
+
+
+
+
+
+    
+    // var container = document.querySelector('.container');
+    // var tabHeader = document.querySelector('.tab-header');
+    // var tabBody = document.querySelector('.tab-body')
+    //
+    // var headerLis = tabHeader.querySelectorAll('li');
+    // var bodyLis = tabBody.querySelectorAll('li');
+    //
+    //
+    // for (var i = 0; i <headerLis.length; i++){
+    //     (function (index) {
+    //         headerLis[i].onclick = function () {
+    //             for (var n = 0; n < headerLis.length; n++){
+    //                 headerLis[n].className = "";
+    //                 bodyLis[n].className = "";
+    //             }
+    //             this.className = "active";
+    //             // bodyLis[this.index].className = "active"; 方法1
+    //             bodyLis[index].className = "active";
+    //         }
+    //     })(i)
+    //     // headerLis[i].index = i; 两种方法处理索引值  （方法一）
+    //     //(function(){}）() 立即执行函数
+    //
+    // }
+
+</script>
+</html>

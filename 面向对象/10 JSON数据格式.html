@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //JSON是一种轻量级的数据交换格式
+    // 只有两种数据格式 数组 对象
+
+    //前后端数据交互 AJAX  get  post
+    // application / Json JSON 字符串'{"name":"大宅门"，"sex":"man"}'
+
+
+
+    var obj = {
+        "name":"刘慈欣",
+        "sex":"man"
+    };
+
+    var str = JSON.stringify(obj);
+    console.log(str);//字符串
+
+    var oldObj = JSON.parse(str)
+    console.log(oldObj);//传统的对象
+    // 配合Postman
+    // {
+    //     "name":"刘嘉玲",
+    //     "sex":"women"
+    // }
+</script>
+</html>

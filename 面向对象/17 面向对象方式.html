@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        .scroll-news{
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #000;
+            height: 150px;
+        }
+        .scroll-news .news-list{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<button>停止第一个</button>
+<button>停止第二个</button>
+<button>动起来第一个</button>
+<button>动起来第二个</button>
+<div class="scroll-news news1">
+    <ul class="news-list">
+        <li>我是内容1</li>
+        <li>我是内容2</li>
+        <li>我是内容3</li>
+        <li>我是内容4</li>
+        <li>我是内容5</li>
+        <li>我是内容6</li>
+        <li>我是内容7</li>
+        <li>我是内容8</li>
+        <li>我是内容9</li>
+        <li>我是内容10</li>
+        <li>我是内容11</li>
+        <li>我是内容12</li>
+        <li>我是内容13</li>
+        <li>我是内容14</li>
+        <li>我是内容15</li>
+        <li>我是内容16</li>
+        <li>我是内容17</li>
+        <li>我是内容18</li>
+        <li>我是内容19</li>
+        <li>我是内容20</li>
+    </ul>
+</div>
+<div class="scroll-news news2">
+    <ul class="news-list">
+        <li>我是内容1</li>
+        <li>我是内容2</li>
+        <li>我是内容3</li>
+        <li>我是内容4</li>
+        <li>我是内容5</li>
+        <li>我是内容6</li>
+        <li>我是内容7</li>
+        <li>我是内容8</li>
+        <li>我是内容9</li>
+        <li>我是内容10</li>
+        <li>我是内容11</li>
+        <li>我是内容12</li>
+        <li>我是内容13</li>
+        <li>我是内容14</li>
+        <li>我是内容15</li>
+        <li>我是内容16</li>
+        <li>我是内容17</li>
+        <li>我是内容18</li>
+        <li>我是内容19</li>
+        <li>我是内容20</li>
+    </ul>
+</div>
+</body>
+<script>
+    var btns = document.querySelectorAll('button');
+
+    function MakeNews(box) {
+        this.box = document.querySelector(box);
+        this.newsList = this.box.querySelector('.news-list');
+        this.newsHeight = this.newsList.offsetHeight;
+
+        this.innerHtml = this.newsList.innerHTML;
+        this.innerHtml+=this.innerHtml;
+        this.newsList.innerHTML = this.innerHtml;
+
+        this.go();
+        // var _this = this;
+
+        // this.timer = setInterval(function () {//this的指向变了
+        //                                                       //速度
+        //     _this.newsList.style.top = _this.newsList.offsetTop - 10 + "px";
+        //     if (Math.abs(_this.newsList.offsetTop) >= _this.newsHeight){
+        //         _this.newsList.style.top = 0;
+        //     }
+        // },20)
+        // this.timer = setInterval(this.go,20)
+    }
+
+    MakeNews.prototype.stop = function () {
+        clearInterval(this.timer);
+    };
+    MakeNews.prototype.go = function () {
+        var _this = this;
+        this.timer = setInterval(function () {
+            _this.newsList.style.top = _this.newsList.offsetTop - 10 + "px";
+            if (Math.abs(_this.newsList.offsetTop) >= _this.newsHeight){
+                _this.newsList.style.top = 0;
+            }
+        },20)
+    }
+
+
+    var news1 = new MakeNews('.news1');
+    var news2 = new MakeNews('.news2');
+
+    btns[0].onclick = function () {
+        news1.stop();
+    }
+    btns[1].onclick = function () {
+        news2.stop();
+    }
+    btns[2].onclick = function () {
+        news1.go();
+    }
+    btns[3].onclick = function () {
+        news2.go();
+    }
+
+
+
+</script>
+</html>

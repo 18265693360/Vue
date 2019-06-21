@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+//     indexOf()的用法：返回字符中indexof（string）中字串string在父串中首次出现的位置，从0开始！没有返回-1；方便判断和截取字符串！indexOf()定义和用法indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置。语法stringObject.indexOf(searchvalue,fromindex)参数 描述searchvalue 必需。规定需检索的字符串值。fromindex 可选的整数参数。规定在字符串中开始检索的位置。它的合法取值是 0到 - 1。如省略该参数，则将从字符串的首字符开始检索。
+//
+// 说明
+//
+//     该方法将从头到尾地检索字符串 stringObject，看它是否含有子串 searchvalue。开始检索的位置在字符串的 fromindex 处或字符串的开头（没有指定 fromindex 时）。如果找到一个 searchvalue，则返回 searchvalue 的第一次出现的位置。stringObject 中的字符位置是从 0 开始的。
+
+
+    var arr = [2,3,44,3,2,5,6,6,77,3,33,2];
+    var newArr = [];
+
+
+    //indexOf 有的话给数组下标 没有为 -1
+    // for (var i = 0; i < arr.length; i++){
+    //     if (newArr.indexOf(arr[i])==-1){
+    //         //一个一个往里面扔 之前扔进去的都有数组下标 没扔进去的肯定是-1 就扔进去
+    //         newArr.push(arr[i])
+    //     }
+    // }
+    // console.log(newArr);
+
+
+    //利用对象的属性 相同名字的属性会被覆盖
+    //思路： 遍历重复的数组 然后利用对象属性的覆盖性（属性唯一性）判断
+    // 如果对象中 没有出现数组项证明这个项是重复的 如果出现了就是重复项
+    // 1 把没有重复的项推进数组中 2 在对象上添加一个标记如果出现 表明该项是重复项
+
+    //     var obj = {};
+    //     for (var i = 0; i<arr.length; i++){
+    //         if (!obj[arr[i]]){//未重复出现的项
+    //             newArr.push(arr[i]); //扔进去
+    //             obj[arr[i]] = 1; //标记
+    //         }
+    //     }
+    //     console.log(newArr);
+
+    //统计数组中项目出现的次数
+    //利用对象属性的唯一性 先创造一个空对象 然后数组循环 判断对象当中的属性是否有该数组项
+    // 如果没有那就标记1 如果有 把该属性+1
+
+    //统计各项的出现次数
+    var obj = {};
+    for (var i = 0; i < arr.length; i++){
+        if (!obj[arr[i]]) {
+             obj[arr[i]] = 1
+        }else{
+            obj[arr[i]]++
+        }
+    }
+    console.log(obj);
+
+
+</script>
+</html>

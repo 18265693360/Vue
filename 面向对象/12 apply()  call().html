@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // var obj1 = {
+    //     name: "高圆圆",
+    //     logName:function () {
+    //         console.log(this.name);
+    //     }
+    // }
+    var obj1 = {
+        name: "高圆圆",
+        logName:function (nation) {
+            console.log(this.name + "是" + nation);
+        }
+    }
+    // obj1.logName("中国人");
+
+
+    var obj2 = {
+        name: "刘亦菲"
+    };
+
+    obj1.logName.call(obj2);//刘亦菲
+    obj1.logName.apply(obj2);//刘亦菲
+
+    // bind 不能制动执行  call apply 可以
+    var logName = obj1.logName.bind(obj2);
+    logName("中国人");
+
+
+    //call()的理解方式1： 能够让obj2去调用obj1内的logName方法
+    //call()的理解方式2： 能够改变this的指向。
+    // this的指向将是call传进来的第一个参数
+    // call apply 他们的参数导致结果不同
+    //传参格式不同
+    //call(参数1，参数2，参数3)
+    // obj1.logName.call(obj2, "Chinese", "12341");
+    //参数放到数组中
+    // obj1.logName.apply(obj2, ["Chinese"])
+
+
+
+    //连接两个数组
+    var arr1 = [1,2,3];
+    var arr2 = [4,5,6];
+
+
+    //此处的 arr2就相当于apply的参数
+    // 且就像是 arr1.push(4,5,6)
+    arr1.push.apply(arr1, arr2);
+    console.log(arr1);
+
+
+
+</script>
+</html>

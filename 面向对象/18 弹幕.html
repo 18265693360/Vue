@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            position: relative;
+            width: 500px;
+            height: 500px;
+            border: 1px solid #000;
+            margin: 60px auto;
+        }
+        .item{
+            position: absolute;
+            left: 500px;
+            /*这里是修改弹幕的地方*/
+            font-weight: 600;
+            font-size: 60px;
+        }
+    </style>
+</head>
+<body>
+<input type="text" id="text">
+<button id="btn">发送</button>
+    <div id="box"></div>
+</body>
+<script>
+    //1 弹幕从右向左
+    //2 出现位置不定
+    //3 跑完就会消失
+
+    var text = document.querySelector('#text');
+    var btn = document.querySelector('#btn');
+    var box = document.querySelector('#box');
+
+    btn.onclick = function () {
+        // var value = text.value(); 错误
+        var value = text.value;
+        text.value = '';
+        //创建一个dom元素
+        var span = document.createElement('span');
+        //将text放进去
+        span.innerText = value;
+        span.className = "item";//添加类名
+        box.appendChild(span);//添加进去内容
+        //出现位置
+        var top = Math.floor((Math.random()*300));
+        //不能超出高度
+        span.style.top = top + 'px';
+        //动起来
+        var timer = setInterval(function () {
+            span.style.left = span.offsetLeft -2 + 'px';
+            if (span.offsetLeft < -span.offsetLeft){
+                //就是必须是span 移动到box外面然后宽度>距离左边框的距离
+                clearInterval(timer);
+                span.remove();
+            }
+        },20)
+    }
+
+
+
+
+
+
+
+</script>
+</html>
